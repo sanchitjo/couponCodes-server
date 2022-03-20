@@ -24,18 +24,13 @@ async function data() {
 } 
 data();
 
-//middleware
-// const myOwnMiddleware = (req, res, next) => {
-    
-//     next()
-// }
-// app.use(morgan("dev"))
-// app.use(myOwnMiddleware)
-
 //bring in the routes
 const couponRoutes = require('./routes/coupon')
 
 app.use('/coupon', couponRoutes)
 
-const port = process.env.PORT || 8080
+let port = process.env.PORT;
+if(port == null || port == ""){
+    port = 8080
+}
 app.listen(port, () => console.log(`app is listening on port: ${port}`))
